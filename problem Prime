@@ -1,0 +1,49 @@
+// Online C++ compiler to run C++ program online
+#include <bits/stdc++.h>
+using namespace std;
+bool status[90000000 + 1];
+void solv(int N)
+{
+    int sq = sqrt(N);
+
+    for(int i = 4; i <= N; i += 2)
+    {
+        status[i] = 1;
+    }
+
+    for(int i = 3; i <= sq; i += 2)
+    {
+        if(status[i] == 0)
+        {
+            for(int j = i * i; j <= N; j += i)
+                status[j] = 1;
+        }
+    }
+
+    status[1] = 1;
+}
+
+int main()
+{
+  vector<int>A;
+  int a=90000000;
+  solv(a);
+    
+for(int i=1; i<=a; i++)
+  {
+     if(status[i]==0)
+      {
+         A.push_back(i);
+      }
+  }
+  int n;
+  cin>>n;
+  while(n--){
+      int x;
+      cin>>x;
+      cout<<A[x-1]<<endl;
+  }
+
+
+return 0;
+}
